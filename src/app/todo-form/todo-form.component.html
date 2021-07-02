@@ -1,0 +1,85 @@
+<!-- Template Form -->
+<!-- <div class="form-wrap">
+    <div class="tabs">
+        <h3 class="signup-tab"><button (click)="toggleSignup=false" class="btn btn-primary" style="width: -webkit-fill-available;">Sign Up</button></h3>
+        <h3 class="login-tab"><button (click)="toggleSignup=true" class="btn btn-primary ml-1" style="width: -webkit-fill-available;">Login</button></h3>
+    </div>
+
+    <div class="tabs-content">
+        <div id="signup-tab-content" *ngIf="!toggleSignup" [ngClass]="toggleSignup ? '' : 'active'">
+            <form class="signup-form" #registerForm='ngForm'>
+                <input type="text" class="input" name="email" [(ngModel)]="info.email" #email="ngModel" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                <div *ngIf="email.invalid  && (email.touched || email.dirty)" class="text-danger">
+                    <div *ngIf="email.errors.required">Email is required</div>
+                    <div *ngIf="email.errors.pattern">Email must be a valid email address</div>
+                </div>
+                <input type="text" class="input" name="userName"  [(ngModel)]="info.userName" #userName="ngModel"  placeholder="Username" required>
+                <div *ngIf="userName.invalid  && (userName.touched || userName.dirty)" class="text-danger">
+                    <div *ngIf="userName.errors.required">User Name is required</div>
+                </div>
+                <input type="password" class="input" name="password"  [(ngModel)]="info.password" #password="ngModel" placeholder="Password" required minlength="6">
+                <div *ngIf="password.invalid  && (password.touched || password.dirty)" class="text-danger">
+                    <div *ngIf="password.errors.required">Password is required</div>
+                    <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+                <input type="submit" class="button" [disabled]="registerForm.invalid" (click)="register(registerForm)" value="Sign Up">
+                <h3 class="login-tab"><button (click)="reset(registerForm)" class="btn btn-primary ml-1" style="width: -webkit-fill-available;">Reset</button></h3>
+            </form>
+        </div>
+
+        <div id="login-tab-content"  *ngIf="toggleSignup" [ngClass]="toggleSignup ? 'active' : ''">
+            <form class="login-form" action="" method="post">
+                <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
+                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
+                <input type="checkbox" class="checkbox" id="remember_me">
+
+                <input type="submit" class="button" value="Login">
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<!-- Reactive Form -->
+<div class="form-wrap">
+    <div class="tabs">
+        <h3 class="signup-tab"><button (click)="toggleSignup=false" class="btn btn-primary" style="width: -webkit-fill-available;">Sign Up</button></h3>
+        <h3 class="login-tab"><button (click)="toggleSignup=true" class="btn btn-primary ml-1" style="width: -webkit-fill-available;">Login</button></h3>
+    </div>
+
+    <div class="tabs-content">
+        <div id="signup-tab-content" *ngIf="!toggleSignup" [ngClass]="toggleSignup ? '' : 'active'">
+            <form [formGroup]="registerForm" class="signup-form">
+                <input formControlName="email" type="text" class="input" name="email" placeholder="Email">
+                <div *ngIf="f.email.invalid  && (f.email.touched || f.email.dirty)" class="text-danger">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
+                </div>
+                <input type="text" class="input"  formControlName="userName" name="userName"  placeholder="Username" required>
+                <div *ngIf="f.userName.invalid  && (f.userName.touched || f.userName.dirty)" class="text-danger">
+                    <div *ngIf="f.userName.errors.required">User Name is required</div>
+                </div>
+                <input type="password" class="input"  formControlName="password" name="password" placeholder="Password" required minlength="6">
+                <div *ngIf="f.password.invalid  && (f.password.touched || f.password.dirty)" class="text-danger">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+                <input type="submit" class="button" [disabled]="registerForm.invalid" (click)="register()" value="Sign Up">
+                <h3 class="login-tab"><button (click)="reset()" class="btn btn-primary ml-1" style="width: -webkit-fill-available;">Reset</button></h3>
+            </form>
+        </div>
+
+        <div id="login-tab-content"  *ngIf="toggleSignup" [ngClass]="toggleSignup ? 'active' : ''">
+            <form class="login-form" action="" method="post">
+                <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
+                <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
+                <input type="checkbox" class="checkbox" id="remember_me">
+
+                <input type="submit" class="button" value="Login">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="mx-5">
+    <input type="text" class="form-control" value="asa" #tag>
+</div>
